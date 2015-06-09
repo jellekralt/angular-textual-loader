@@ -1,0 +1,10 @@
+.tl-char {
+  opacity: 0;
+}
+
+.tl-char.tl-fadein {
+  -webkit-transition: opacity 1s; /* For Safari 3.1 to 6.0 */
+  transition: opacity 1s;
+  opacity: 1;
+}
+

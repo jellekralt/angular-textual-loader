@@ -11,9 +11,9 @@
     <script src="demo.js"></script>
   </head>
 
-  <body ng-controller="MainController">
+  <body ng-controller="MainController as vm">
     
-    <button>Loading<span textual-loader>...</span></button>
+    <button>Loading<span textual-loader tl-enabled="vm.loading">...</span></button>
 
   </body>
 

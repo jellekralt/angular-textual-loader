@@ -13,46 +13,96 @@
         //Usage:
         //<button>Loading <span textual-loader></span></div>
         var directive = {
-            restrict: 'AE',
-            link: linkFunc
+          scope: {
+            enabled: '=tlEnabled'
+          },
+          restrict: 'AE',
+          link: linkFunc
         };
         return directive;
 
-        function linkFunc(scope, element, attrs, ctrl) {
+        function linkFunc(scope, element, attrs) {
           var elementText = element.text();
           var characters = [];
-          var character;
           var currentChar = 0;
-          
-          // Clear element
-          element.html('');
-          
-          for(var i=0;i<elementText.length;i++) {
-              character = angular.element('<span class="tl-char">.</span>');
-              element.append(character);
-              characters.push(character);
-          }
-          
-          setInterval(function() {
-            
-            if(currentChar === -1) {
-                            
-              for(var i=0;i<characters.length;i++) {
-                characters[i].removeClass('tl-fadein');
-              }
+          var character;
+          var interval;
 
+          // Clear element
+          empty();
+          build();
+
+          // Set enabled by default (if not set)
+          if(typeof scope.enabled === 'undefined') {
+            scope.enabled = true;
+          }
+
+          if(scope.enabled) {
+            start();
+          }
+
+          // Watch for changes on the enabled state
+          scope.$watch('enabled', function(newValue, oldValue) {
+            var diff = (newValue !== oldValue);
+
+            if(newValue && diff && scope.enabled) {
+              start();
+            } else if(diff) {
+              stop();
+            }
+          });
+
+
+          function start() {
+            console.info('start');
+
+            interval = setInterval(function() {
+              nextChar();
+            }, 500);
+
+          }
+
+          function stop() {
+            clearInterval(interval);
+            //empty();
+          }
+
+          function showChar(index) {
+            characters[index].addClass('tl-fadein');
+          }
+
+          function nextChar() {
+            if(currentChar === -1) {   
+              clearChars(); 
             } else {
-            
-              characters[currentChar].addClass('tl-fadein');
+              showChar(currentChar);
             }
             
             if(currentChar === characters.length-1) {
               currentChar = -1;
             } else {
               currentChar++;
+            }            
+          }
+
+          function clearChars() {
+            for(var i=0;i<characters.length;i++) {
+              characters[i].removeClass('tl-fadein');
             }
-          }, 1000);
-         // console.log(elementText.split());
+          }
+
+          function empty() {
+            element.html('');
+          }
+
+          function build() {
+            for(var i=0;i<elementText.length;i++) {
+              character = angular.element('<span class="tl-char">.</span>');
+              element.append(character);
+              characters.push(character);
+            } 
+          }
+
         }
     }
 

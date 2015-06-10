@@ -1,0 +1,27 @@
+{
+  "name": "angular-textual-loader",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jellekralt/angular-textual-loader",
+  "authors": [
+    "Jelle Kralt <jelle@jellekralt.nl>"
+  ],
+  "description": "Textual Loader for Angular",
+  "main": "textual-loader.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "textual",
+    "loader",
+    "loading",
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

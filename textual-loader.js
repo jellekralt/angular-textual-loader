@@ -52,7 +52,9 @@
             }
           });
 
-
+          /**
+           * Starts the loader
+           */
           function start() {
             console.info('start');
 
@@ -62,15 +64,25 @@
 
           }
 
+          /**
+           * Stops the loader
+           */
           function stop() {
             clearInterval(interval);
             //empty();
           }
 
+          /**
+           * Shows a single character
+           * @param  {integer} index Character index
+           */
           function showChar(index) {
             characters[index].addClass('tl-fadein');
           }
 
+          /**
+           * Processes the next character
+           */
           function nextChar() {
             if(currentChar === -1) {   
               clearChars(); 
@@ -85,16 +97,25 @@
             }            
           }
 
+          /**
+           * Hides all the characters
+           */
           function clearChars() {
             for(var i=0;i<characters.length;i++) {
               characters[i].removeClass('tl-fadein');
             }
           }
 
+          /**
+           * Empties the directive container
+           */
           function empty() {
             element.html('');
           }
 
+          /**
+           * Builds the html template
+           */
           function build() {
             for(var i=0;i<elementText.length;i++) {
               character = angular.element('<span class="tl-char">.</span>');

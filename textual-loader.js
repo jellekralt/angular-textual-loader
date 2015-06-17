@@ -14,7 +14,8 @@
         //<button>Loading <span textual-loader></span></div>
         var directive = {
           scope: {
-            enabled: '=tlEnabled'
+            enabled: '=tlEnabled',
+            speed: '=?tlSpeed'
           },
           restrict: 'AE',
           link: linkFunc
@@ -22,6 +23,7 @@
         return directive;
 
         function linkFunc(scope, element, attrs) {
+          var speed = scope.speed || 500;
           var elementText = element.text();
           var characters = [];
           var currentChar = 0;
@@ -60,7 +62,7 @@
 
             interval = setInterval(function() {
               nextChar();
-            }, 500);
+            }, speed);
 
           }
 

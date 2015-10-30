@@ -6,7 +6,7 @@
     "Jelle Kralt <jelle@jellekralt.nl>"
   ],
   "description": "Textual Loader for Angular",
-  "main": "textual-loader.js",
+  "main": "src/textual-loader.js",
   "moduleType": [
     "globals"
   ],
